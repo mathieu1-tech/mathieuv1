@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mathieu Konstruct Solutions | Secure Admin</title>
+  <style>
+    :root{--bg:#0f172a;--panel:#111827;--card:#1f2937;--text:#f8fafc;--muted:#94a3b8;--line:#334155;--accent:#f59e0b;--ok:#22c55e;--danger:#ef4444;--input:#0b1220}*{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,sans-serif;background:linear-gradient(135deg,#0f172a,#111827);color:var(--text)}button,input,textarea{font:inherit}.hidden{display:none!important}.login{min-height:100vh;display:grid;place-items:center;padding:24px}.login-card,.card{background:rgba(17,24,39,.92);border:1px solid var(--line);border-radius:24px;box-shadow:0 20px 60px rgba(0,0,0,.35)}.login-card{width:min(440px,100%);padding:28px}.brand{display:flex;align-items:center;gap:12px;margin-bottom:18px}.mark{width:44px;height:44px;border-radius:14px;background:linear-gradient(135deg,var(--accent),#f97316);display:grid;place-items:center;font-weight:900;color:#111827}h1,h2,h3{margin:0 0 10px}.muted{color:var(--muted)}label{display:block;margin:14px 0 6px;color:#cbd5e1;font-size:.92rem}.field{width:100%;border:1px solid var(--line);background:var(--input);color:var(--text);border-radius:12px;padding:12px 14px;outline:none}.field:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(245,158,11,.16)}textarea.field{min-height:260px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:13px}.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}.btn{border:0;border-radius:12px;padding:11px 14px;background:var(--accent);color:#111827;font-weight:800;cursor:pointer}.btn.secondary{background:#334155;color:var(--text)}.btn.danger{background:var(--danger);color:white}.btn.ghost{background:transparent;color:var(--text);border:1px solid var(--line)}.btn:disabled{opacity:.6;cursor:not-allowed}.app{display:grid;grid-template-columns:270px 1fr;min-height:100vh}.side{background:#0b1220;border-right:1px solid var(--line);padding:20px;position:sticky;top:0;height:100vh}.nav{display:grid;gap:8px;margin-top:24px}.nav button{width:100%;text-align:left}.main{padding:24px}.top{display:flex;justify-content:space-between;gap:12px;align-items:center;margin-bottom:20px}.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}.card{padding:18px}.stat{font-size:2rem;font-weight:900}.section{display:none}.section.active{display:block}.notice{border-left:4px solid var(--accent);background:rgba(245,158,11,.08);padding:12px;border-radius:12px}.danger-note{border-left-color:var(--danger);background:rgba(239,68,68,.09)}.list{display:grid;gap:10px}.item{border:1px solid var(--line);border-radius:14px;padding:12px;background:#111827}.toast{position:fixed;right:20px;bottom:20px;background:#020617;border:1px solid var(--line);padding:14px 16px;border-radius:14px;box-shadow:0 12px 40px rgba(0,0,0,.35);max-width:360px}.strength{height:8px;background:#334155;border-radius:999px;overflow:hidden}.strength span{display:block;height:100%;width:0;background:var(--danger);transition:.2s}.code{background:#020617;border:1px solid var(--line);border-radius:14px;padding:12px;overflow:auto}.pill{border:1px solid var(--line);border-radius:999px;padding:4px 9px;color:var(--muted);font-size:.85rem}@media(max-width:900px){.app{grid-template-columns:1fr}.side{position:relative;height:auto}.grid{grid-template-columns:1fr}.top{align-items:flex-start;flex-direction:column}}
+  </style>
+</head>
+<body>
+  <div id="loginView" class="login">
+    <form id="loginForm" class="login-card">
+      <div class="brand"><div class="mark">M</div><div><h1>Secure Admin</h1><p class="muted">Mathieu Konstruct Solutions</p></div></div>
+      <p class="notice danger-note">Real admin security runs through this backend API, database, and server-side login. GitHub Pages alone cannot provide private admin security.</p>
+      <label for="username">Username</label>
+      <input id="username" class="field" autocomplete="username" required />
+      <label for="password">Password</label>
+      <input id="password" class="field" type="password" autocomplete="current-password" required />
+      <div class="row" style="justify-content:space-between;margin:12px 0 18px">
+        <label class="row" style="margin:0"><input type="checkbox" id="showLoginPassword" /> Show password</label>
+      </div>
+      <button class="btn" type="submit" style="width:100%">Login</button>
+      <p id="loginError" class="muted"></p>
+    </form>
+  </div>
+
+  <div id="appView" class="app hidden">
+    <aside class="side">
+      <div class="brand"><div class="mark">M</div><div><h2>Admin</h2><p class="muted" id="sessionUser">Loading...</p></div></div>
+      <nav class="nav">
+        <button class="btn secondary" data-tab="dashboard">Dashboard</button>
+        <button class="btn secondary" data-tab="content">Site Data Editor</button>
+        <button class="btn secondary" data-tab="products">Products</button>
+        <button class="btn secondary" data-tab="publish">Publish / Export</button>
+        <button class="btn secondary" data-tab="security">Security Settings</button>
+        <button class="btn ghost" id="logoutBtn">Logout</button>
+      </nav>
+    </aside>
+
+    <main class="main">
+      <header class="top">
+        <div><h1 id="pageTitle">Dashboard</h1><p class="muted">Backend-powered admin dashboard</p></div>
+        <div class="row"><span class="pill" id="statusPill">Checking session</span><button class="btn" id="saveBtn">Save Site Data</button></div>
+      </header>
+
+      <section id="dashboard" class="section active">
+        <div class="grid">
+          <div class="card"><p class="muted">Products</p><div class="stat" id="productCount">0</div></div>
+          <div class="card"><p class="muted">Services</p><div class="stat" id="serviceCount">0</div></div>
+          <div class="card"><p class="muted">Last Updated</p><div id="lastUpdated">—</div></div>
+        </div>
+        <div class="card" style="margin-top:16px"><h2>Architecture</h2><p>GitHub Pages can host the public website, but secure admin login runs on this backend server with SQLite and bcrypt password hashing.</p></div>
+      </section>
+
+      <section id="content" class="section">
+        <div class="card"><h2>Site Data JSON</h2><p class="muted">Edit carefully. This controls the website content. Use valid JSON only.</p><textarea id="siteDataEditor" class="field"></textarea><div class="row" style="margin-top:12px"><button class="btn" id="formatJsonBtn">Format JSON</button><button class="btn secondary" id="reloadDataBtn">Reload from Server</button></div></div>
+      </section>
+
+      <section id="products" class="section">
+        <div class="card"><div class="row" style="justify-content:space-between"><div><h2>Products</h2><p class="muted">Products are stored in site data and saved through protected API routes.</p></div><button class="btn" id="addProductBtn">Add Product</button></div><div id="productList" class="list" style="margin-top:16px"></div></div>
+      </section>
+
+      <section id="publish" class="section">
+        <div class="card"><h2>GitHub Pages Publish Options</h2><p class="notice">Public website option A: make your GitHub Pages site fetch <code>/api/public/site-data</code>. Option B: download generated <code>site-data.js</code> and commit it to GitHub.</p><div class="row"><button class="btn" id="downloadJsBtn">Download site-data.js</button><button class="btn secondary" id="copyJsBtn">Copy site-data.js</button></div><pre class="code" id="siteDataJsPreview" style="margin-top:14px;max-height:360px"></pre></div>
+      </section>
+
+      <section id="security" class="section">
+        <div class="card"><h2>Security Settings</h2><p class="notice danger-note">This backend provides real server-side password verification. Keep secrets out of GitHub and use HTTPS in production.</p><label>Current Password</label><input id="currentPassword" class="field" type="password"><label>New Password</label><input id="newPassword" class="field" type="password"><div class="strength" style="margin-top:8px"><span id="strengthBar"></span></div><p class="muted">Minimum 8 characters, at least 1 letter and 1 number. A symbol is recommended.</p><label>Confirm New Password</label><input id="confirmPassword" class="field" type="password"><label class="row"><input id="showSecurityPasswords" type="checkbox"> Show passwords</label><div class="row" style="margin-top:14px"><button class="btn" id="changePasswordBtn">Change Password</button></div></div>
+      </section>
+    </main>
+  </div>
+
+  <div id="toast" class="toast hidden"></div>
+
+  <script>
+    const API_BASE = location.origin;
+    let csrfToken = '';
+    let siteData = null;
+    let updatedAt = null;
+
+    const $ = (id) => document.getElementById(id);
+    function toast(message){ const el=$('toast'); el.textContent=message; el.classList.remove('hidden'); setTimeout(()=>el.classList.add('hidden'),3200); }
+    async function api(path, options={}){
+      const headers = {'Content-Type':'application/json', ...(options.headers||{})};
+      if (!csrfToken && options.method && options.method !== 'GET') await loadCsrf();
+      if (csrfToken) headers['x-csrf-token'] = csrfToken;
+      const res = await fetch(API_BASE + path, { credentials:'include', ...options, headers });
+      const text = await res.text();
+      const json = text ? JSON.parse(text) : {};
+      if(!res.ok) throw new Error(json.error || 'Request failed');
+      return json;
+    }
+    async function loadCsrf(){ const r = await fetch(API_BASE + '/api/auth/csrf', { credentials:'include' }); const j=await r.json(); csrfToken=j.csrfToken; }
+    async function checkSession(){
+      try{ await loadCsrf(); const s=await api('/api/auth/session'); $('sessionUser').textContent=s.user.username; showApp(); await loadSiteData(); }
+      catch{ showLogin(); }
+    }
+    function showApp(){ $('loginView').classList.add('hidden'); $('appView').classList.remove('hidden'); $('statusPill').textContent='Logged in'; }
+    function showLogin(){ $('appView').classList.add('hidden'); $('loginView').classList.remove('hidden'); }
+    async function loadSiteData(){ const r=await api('/api/site-data'); siteData=r.data; updatedAt=r.updatedAt; renderAll(); }
+    function renderAll(){
+      $('siteDataEditor').value=JSON.stringify(siteData,null,2);
+      $('productCount').textContent=(siteData.products||[]).length;
+      $('serviceCount').textContent=(siteData.services||[]).length;
+      $('lastUpdated').textContent=updatedAt||'—';
+      $('siteDataJsPreview').textContent=toSiteDataJs(siteData).slice(0,8000);
+      renderProducts();
+    }
+    function getEditorData(){ return JSON.parse($('siteDataEditor').value); }
+    async function saveSiteData(){ const data=getEditorData(); const r=await api('/api/site-data',{method:'PUT',body:JSON.stringify({data})}); siteData=r.data; toast('Saved securely to backend database.'); renderAll(); }
+    function toSiteDataJs(data){ return `window.defaultSiteData = ${JSON.stringify(data,null,2)};\n\nwindow.storageKeys = { data: 'mksSiteData', savedAt: 'mksSiteDataSavedAt' };\nwindow.cloneSiteData = function cloneSiteData(data) { return JSON.parse(JSON.stringify(data)); };\n`; }
+    function renderProducts(){
+      const box=$('productList'); box.innerHTML=''; const products=siteData.products||[];
+      if(!products.length){box.innerHTML='<p class="muted">No products found.</p>';return;}
+      products.forEach((p,i)=>{ const id=String(p.id||p.name||i); const div=document.createElement('div'); div.className='item'; div.innerHTML=`<div class="row" style="justify-content:space-between"><div><strong>${p.name||'Unnamed product'}</strong><p class="muted">${p.category||''}</p></div><div class="row"><button class="btn secondary" data-edit="${i}">Edit JSON</button><button class="btn danger" data-delete="${id.replaceAll('"','&quot;')}">Delete</button></div></div>`; box.appendChild(div); });
+    }
+    document.addEventListener('click', async (e)=>{
+      const tab=e.target.closest('[data-tab]'); if(tab){ document.querySelectorAll('.section').forEach(s=>s.classList.remove('active')); $(tab.dataset.tab).classList.add('active'); $('pageTitle').textContent=tab.textContent.trim(); }
+      const edit=e.target.closest('[data-edit]'); if(edit){ const i=Number(edit.dataset.edit); const raw=prompt('Edit product JSON', JSON.stringify(siteData.products[i],null,2)); if(raw){ siteData.products[i]=JSON.parse(raw); $('siteDataEditor').value=JSON.stringify(siteData,null,2); renderAll(); } }
+      const del=e.target.closest('[data-delete]'); if(del && confirm('Delete this product?')){ siteData.products=(siteData.products||[]).filter((p,i)=>String(p.id||p.name||i)!==del.dataset.delete); $('siteDataEditor').value=JSON.stringify(siteData,null,2); renderAll(); await saveSiteData(); }
+    });
+    $('loginForm').addEventListener('submit', async (e)=>{ e.preventDefault(); $('loginError').textContent=''; try{ await api('/api/auth/login',{method:'POST',body:JSON.stringify({username:$('username').value,password:$('password').value})}); await checkSession(); }catch(err){ $('loginError').textContent='Invalid username or password.'; }});
+    $('showLoginPassword').addEventListener('change',e=>$('password').type=e.target.checked?'text':'password');
+    $('showSecurityPasswords').addEventListener('change',e=>['currentPassword','newPassword','confirmPassword'].forEach(id=>$(id).type=e.target.checked?'text':'password'));
+    $('logoutBtn').addEventListener('click',async()=>{ try{await api('/api/auth/logout',{method:'POST',body:'{}'});}catch{} showLogin(); });
+    $('saveBtn').addEventListener('click',()=>saveSiteData().catch(err=>toast(err.message)));
+    $('formatJsonBtn').addEventListener('click',()=>{ $('siteDataEditor').value=JSON.stringify(getEditorData(),null,2); });
+    $('reloadDataBtn').addEventListener('click',()=>loadSiteData());
+    $('addProductBtn').addEventListener('click',()=>{ siteData.products=siteData.products||[]; siteData.products.push({id:'product-'+Date.now(),name:'New Product',category:'',description:'',image:''}); $('siteDataEditor').value=JSON.stringify(siteData,null,2); renderAll(); });
+    $('downloadJsBtn').addEventListener('click',()=>{ const blob=new Blob([toSiteDataJs(getEditorData())],{type:'text/javascript'}); const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='site-data.js'; a.click(); URL.revokeObjectURL(a.href); });
+    $('copyJsBtn').addEventListener('click',async()=>{ await navigator.clipboard.writeText(toSiteDataJs(getEditorData())); toast('site-data.js copied.'); });
+    $('newPassword').addEventListener('input',()=>{ const p=$('newPassword').value; let score=0; if(p.length>=8)score++; if(/[A-Za-z]/.test(p))score++; if(/[0-9]/.test(p))score++; if(/[^A-Za-z0-9]/.test(p))score++; const bar=$('strengthBar'); bar.style.width=(score*25)+'%'; bar.style.background=score<3?'#ef4444':score===3?'#f59e0b':'#22c55e'; });
+    $('changePasswordBtn').addEventListener('click',async()=>{ const currentPassword=$('currentPassword').value,newPassword=$('newPassword').value,confirmPassword=$('confirmPassword').value; if(newPassword!==confirmPassword)return toast('New passwords do not match.'); try{ await api('/api/auth/change-password',{method:'POST',body:JSON.stringify({currentPassword,newPassword})}); toast('Password changed. Please login again.'); showLogin(); }catch(err){ toast(err.message); }});
+    document.addEventListener('keydown',e=>{ if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='s'){ e.preventDefault(); if(siteData) saveSiteData().catch(err=>toast(err.message)); }});
+    checkSession();
+  </script>
+</body>
+</html>

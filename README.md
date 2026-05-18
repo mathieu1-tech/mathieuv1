@@ -1,63 +1,47 @@
-# Mathieu Konstruct Solutions Website
+# Mathieu Konstruct Solutions — Real Admin Security Starter
 
-This folder is ready to upload to the GitHub repository:
+This starter adds a real backend admin system for the Mathieu Konstruct Solutions website.
 
-`https://github.com/mathieu1-tech/mathieu1`
+## What is included
 
-Final GitHub Pages URL:
+- Node.js + Express backend
+- SQLite database
+- Server-side admin login
+- bcrypt password hashing
+- HTTP-only cookie session using signed JWT
+- CSRF protection for write requests
+- Login rate limiting
+- Protected site-data, product, gallery, and password-change endpoints
+- Backend admin dashboard at `/admin`
+- Static `site-data.js` export endpoint for GitHub Pages
+- Optional GitHub Pages public API loader
 
-`https://mathieu1-tech.github.io/mathieu1/`
+## Why this is needed
 
-## Files included
+GitHub Pages is static hosting. It can host your public website, but it cannot run a private server-side admin login. Real admin security needs a backend, database, and server-side authentication.
 
-- `index.html` — main website homepage
-- `admin.html` — optional local browser content editor
-- `assets/css/` — website and admin styles
-- `assets/js/` — website interactions, editable site data, admin tools
-- `assets/images/` — website, catalog, product, material, and gallery images
-- `assets/catalog/` — downloadable PDF catalogs
-- `.nojekyll` — keeps GitHub Pages from ignoring asset folders
+## Quick Start
 
-## How to upload to GitHub
+```bash
+cd backend
+cp .env.example .env
+npm install
+npm run seed
+npm run dev
+```
 
-1. Open `https://github.com/mathieu1-tech/mathieu1`.
-2. Upload **all files and folders from this ZIP**, not the ZIP itself.
-3. Make sure `index.html` is in the root of the repository.
-4. Commit the changes to the `main` branch.
+Open:
 
-## How to enable GitHub Pages
+```text
+http://localhost:3000/admin
+```
 
-1. Go to the repository **Settings**.
-2. Open **Pages**.
-3. Under **Build and deployment**, choose **Deploy from a branch**.
-4. Select branch: `main`.
-5. Select folder: `/root`.
-6. Save.
+Use the `ADMIN_USERNAME` and `ADMIN_PASSWORD` you placed in `.env`.
 
-Your site should publish at:
+## Deployment
 
-`https://mathieu1-tech.github.io/mathieu1/`
+See `docs/DEPLOYMENT.md`.
 
-## How to update images later
+## Security
 
-1. Replace images inside `assets/images/`.
-2. Keep the same filename when possible.
-3. If you use a new filename, update the matching image path in `assets/js/site-data.js` or the HTML.
-4. Product/unit images are styled with `object-fit: contain` so they remain fully visible and uncropped.
-
-## How to update the catalog PDF later
-
-1. Replace the PDF in `assets/catalog/`.
-2. Keep this filename when possible:
-
-`PREFAB-CATALOG-MKS-CO-LTD-2026.pdf`
-
-If the filename changes, update all catalog links in `index.html` and `assets/js/main.js`.
-
-## Local preview
-
-You can double-click `index.html` to preview the site locally. For the most accurate test, open the folder with a simple local server or upload directly to GitHub Pages.
-
-## Notes
-
-The contact/quote form is frontend-safe for GitHub Pages. It does not require a backend server.
+See `docs/SECURITY-NOTES.md`.
