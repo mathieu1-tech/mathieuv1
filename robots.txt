@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /admin.html
+Disallow: /backend/
+Sitemap: https://mathieu1-tech.github.io/mathieu/sitemap.xml

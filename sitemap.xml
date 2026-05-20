@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://mathieu1-tech.github.io/mathieu/</loc>
+    <lastmod>2026-05-20</lastmod>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://mathieu1-tech.github.io/mathieu/products/engineering-container-house.html</loc>
+    <lastmod>2026-05-20</lastmod>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://mathieu1-tech.github.io/mathieu/products/customized-container-house.html</loc>
+    <lastmod>2026-05-20</lastmod>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://mathieu1-tech.github.io/mathieu/products/quick-build-house.html</loc>
+    <lastmod>2026-05-20</lastmod>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://mathieu1-tech.github.io/mathieu/products/a-frame-house.html</loc>
+    <lastmod>2026-05-20</lastmod>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://mathieu1-tech.github.io/mathieu/products/space-capsule-house.html</loc>
+    <lastmod>2026-05-20</lastmod>
+    <priority>0.85</priority>
+  </url>
+</urlset>
