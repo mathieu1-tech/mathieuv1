@@ -1,4 +1,3 @@
-
 window.defaultSiteData = {
   "brand": {
     "companyName": "Mathieu Konstruct Solutions Co. Ltd.",
@@ -7,7 +6,7 @@ window.defaultSiteData = {
     "logo": "assets/images/logo.png"
   },
   "hero": {
-    "eyebrow": "Design • Engineers • Construction • Pre-Fab",
+    "eyebrow": "Design | Engineers | Construction | Pre-Fab",
     "headline": "Innovative Prefab Solutions for a Smarter Future",
     "supportingText": "Prefabricated modular units designed for speed, quality, durability, and modern construction needs.",
     "ctaPrimary": "View Products",
@@ -33,7 +32,7 @@ window.defaultSiteData = {
     "heading": "Mathieu Konstruct Solutions Co. Ltd.",
     "body": "Since 2019, Mathieu Konstruct Solutions Co. Ltd. has built a strong foundation as a General Contractor. Today, the company leads in prefabricated unit solutions, combining speed, quality, and innovation to meet modern construction demands.",
     "whatWeDoTitle": "What We Do",
-    "whatWeDoBody": "We deliver ready-to-install prefabricated structures that save time, reduce costs, and maintain high-quality standards — perfect for modern construction needs.",
+    "whatWeDoBody": "We deliver ready-to-install prefabricated structures that save time, reduce costs, and maintain high-quality standards - perfect for modern construction needs.",
     "image": "assets/images/about-prefab-unit.png"
   },
   "visionMission": {
@@ -52,27 +51,27 @@ window.defaultSiteData = {
     {
       "name": "General Construction Works",
       "description": "Reliable project execution for conventional and modern construction needs.",
-      "icon": "🏗️"
+      "icon": "GC"
     },
     {
       "name": "Prefabricated Modular Units",
       "description": "Ready-to-install modular units built for speed, flexibility, and durability.",
-      "icon": "▰"
+      "icon": "PF"
     },
     {
       "name": "Structural & Architectural Works",
       "description": "Engineering-focused design coordination and structural development.",
-      "icon": "📐"
+      "icon": "SE"
     },
     {
       "name": "Design",
       "description": "Clean, functional, and project-ready design planning for prefab solutions.",
-      "icon": "✦"
+      "icon": "DS"
     },
     {
       "name": "Customized Build",
       "description": "Flexible builds tailored to site requirements, layout, usage, and finish.",
-      "icon": "🧩"
+      "icon": "CB"
     }
   ],
   "prefab": {
@@ -96,29 +95,149 @@ window.defaultSiteData = {
   },
   "products": [
     {
+      "id": "engineering-container-house",
       "title": "Engineering Container House",
+      "category": "Container House",
       "description": "Meeting the mass production and construction needs of medium to large-scale engineering projects.",
-      "image": "assets/images/engineering-container-house.png"
+      "image": "assets/images/engineering-container-house.png",
+      "alt": "Engineering container house prefab unit",
+      "bestUse": "Engineering projects, site offices, staff housing, and scalable construction facilities.",
+      "sizeOptions": "8 ft, 10 ft, 16 ft, 20 ft, and 24 ft modular options",
+      "highlights": [
+        "Mass-production ready",
+        "Durable steel frame",
+        "Fast site deployment"
+      ],
+      "features": [
+        "Modular prefab system",
+        "Custom layout options",
+        "Engineering-focused build",
+        "Fast deployment"
+      ],
+      "slug": "engineering-container-house",
+      "pageUrl": "products/engineering-container-house.html",
+      "seo": {
+        "title": "Engineering Container House | Mathieu Konstruct Solutions",
+        "description": "Engineering container house prefab units for site offices, staff housing, and scalable construction project facilities.",
+        "canonicalUrl": "https://mathieu1-tech.github.io/mathieu/products/engineering-container-house.html"
+      },
+      "pageIntro": "A practical container house solution for construction, engineering, and project-site operations that need fast deployment and durable materials."
     },
     {
+      "id": "customized-container-house",
       "title": "Customized Container House",
+      "category": "Custom Build",
       "description": "Realize any of your custom ideas, freely combine and match.",
-      "image": "assets/images/customized-container-house.png"
+      "image": "assets/images/customized-container-house.png",
+      "alt": "Customized container house prefab unit",
+      "bestUse": "Custom offices, specialty rooms, business units, and modular spaces with tailored finishes.",
+      "sizeOptions": "Flexible layout combinations based on project requirements",
+      "highlights": [
+        "Custom layouts",
+        "Color and panel options",
+        "Expandable configurations"
+      ],
+      "features": [
+        "Layout customization",
+        "Interior partition options",
+        "Selectable wall panels",
+        "Project-specific finish"
+      ],
+      "slug": "customized-container-house",
+      "pageUrl": "products/customized-container-house.html",
+      "seo": {
+        "title": "Customized Container House | Mathieu Konstruct Solutions",
+        "description": "Customized container house solutions with flexible layouts, panel options, finishes, and modular configurations for business or project needs.",
+        "canonicalUrl": "https://mathieu1-tech.github.io/mathieu/products/customized-container-house.html"
+      },
+      "pageIntro": "A flexible prefab unit for buyers who need specific layouts, colors, finishes, and combinations without losing the speed advantage of modular construction."
     },
     {
+      "id": "quick-build-house",
       "title": "1-Day Quick Build Houses",
+      "category": "Quick Build",
       "description": "You can own a house in as little as one day.",
-      "image": "assets/images/quick-build-house.png"
+      "image": "assets/images/quick-build-house.png",
+      "alt": "1-day quick build prefab house",
+      "bestUse": "Rapid housing, temporary facilities, emergency site needs, and quick occupancy spaces.",
+      "sizeOptions": "Compact and standard modular sizes",
+      "highlights": [
+        "1-day assembly target",
+        "Lower site disruption",
+        "Move-in ready potential"
+      ],
+      "features": [
+        "Rapid installation",
+        "Reduced on-site labor",
+        "Insulated wall system",
+        "Practical living layout"
+      ],
+      "slug": "quick-build-house",
+      "pageUrl": "products/quick-build-house.html",
+      "seo": {
+        "title": "1-Day Quick Build Houses | Mathieu Konstruct Solutions",
+        "description": "Quick build prefab houses designed for rapid installation, temporary facilities, emergency housing, and fast project occupancy.",
+        "canonicalUrl": "https://mathieu1-tech.github.io/mathieu/products/quick-build-house.html"
+      },
+      "pageIntro": "A speed-focused prefab option for projects that need practical space delivered with less on-site disruption."
     },
     {
+      "id": "a-frame-house",
       "title": "A-Frame House",
+      "category": "Vacation Unit",
       "description": "Excellent drainage and an attractive vacation home.",
-      "image": "assets/images/a-frame-house.png"
+      "image": "assets/images/a-frame-house.png",
+      "alt": "A-frame prefab vacation house",
+      "bestUse": "Vacation homes, resorts, glamping, Airbnb stays, and leisure developments.",
+      "sizeOptions": "Vacation-unit layouts with adaptable interior planning",
+      "highlights": [
+        "Distinctive roof profile",
+        "Excellent drainage",
+        "High guest appeal"
+      ],
+      "features": [
+        "Vacation-ready look",
+        "Weather-shedding form",
+        "Flexible interior use",
+        "Strong visual identity"
+      ],
+      "slug": "a-frame-house",
+      "pageUrl": "products/a-frame-house.html",
+      "seo": {
+        "title": "A-Frame House | Mathieu Konstruct Solutions",
+        "description": "A-frame prefab vacation houses for resorts, glamping sites, Airbnb stays, and leisure developments with strong visual appeal.",
+        "canonicalUrl": "https://mathieu1-tech.github.io/mathieu/products/a-frame-house.html"
+      },
+      "pageIntro": "A visually distinct prefab vacation unit designed for leisure, lodging, and destination projects that need a memorable guest-facing structure."
     },
     {
+      "id": "space-capsule-house",
       "title": "Space Capsule House",
+      "category": "Capsule Unit",
       "description": "Living, working, and leisure, the multifunctional space capsule house meets all your needs.",
-      "image": "assets/images/space-capsule-house.png"
+      "image": "assets/images/space-capsule-house.png",
+      "alt": "Space capsule prefab house",
+      "bestUse": "Premium stays, resort attractions, mobile workspaces, and multifunctional leisure units.",
+      "sizeOptions": "Capsule layouts for living, work, and leisure use",
+      "highlights": [
+        "Premium visual impact",
+        "Multifunctional use",
+        "Modern guest experience"
+      ],
+      "features": [
+        "Compact premium layout",
+        "Modern facade",
+        "Work and leisure ready",
+        "High-impact presentation"
+      ],
+      "slug": "space-capsule-house",
+      "pageUrl": "products/space-capsule-house.html",
+      "seo": {
+        "title": "Space Capsule House | Mathieu Konstruct Solutions",
+        "description": "Space capsule prefab houses for premium stays, resort attractions, compact workspaces, and multifunctional leisure units.",
+        "canonicalUrl": "https://mathieu1-tech.github.io/mathieu/products/space-capsule-house.html"
+      },
+      "pageIntro": "A premium modular unit with a modern capsule profile for projects that need stronger visual impact and flexible living, work, or leisure use."
     }
   ],
   "specificationsIntro": {
@@ -334,7 +453,42 @@ window.defaultSiteData = {
     "heading": "Customize a variety of options according to your needs",
     "containerImage": "assets/images/container-sizes.png",
     "sprayImage": "assets/images/spray-colors.png",
-    "additionalOptions": "Toilet & Bath, Basic Electrical, Interior Partitions."
+    "additionalOptions": "Toilet & Bath, Basic Electrical, Interior Partitions.",
+    "sizes": [
+      "24 ft",
+      "20 ft",
+      "16 ft",
+      "10 ft",
+      "8 ft"
+    ],
+    "colors": [
+      {
+        "name": "Yellow",
+        "value": "#f4d647"
+      },
+      {
+        "name": "Green",
+        "value": "#109c71"
+      },
+      {
+        "name": "Blue Gray",
+        "value": "#415463"
+      },
+      {
+        "name": "Cream",
+        "value": "#f3f0ce"
+      },
+      {
+        "name": "Dark Gray",
+        "value": "#253540"
+      }
+    ],
+    "panels": [
+      "PU Polyurethane",
+      "Rockwool",
+      "Glass Wool",
+      "EPS Expanded Polystyrene"
+    ]
   },
   "advantages": {
     "eyebrow": "Construction Advantage",
@@ -369,30 +523,101 @@ window.defaultSiteData = {
     "metaDescription": "Mathieu Konstruct Solutions Co. Ltd. provides prefabricated modular units, container houses, construction, engineering, and customized prefab solutions for modern building needs.",
     "metaKeywords": "Mathieu Konstruct Solutions, prefab, prefabricated units, modular units, container house, construction, engineering, Paranaque, Bulacan",
     "ogTitle": "Mathieu Konstruct Solutions Co. Ltd. | Prefabricated Modular Units",
-    "ogDescription": "Innovative prefab solutions for a smarter future.",
-    "ogImage": "assets/images/logo.png"
+    "ogDescription": "Premium prefabricated modular units, container houses, construction, engineering, and customized prefab solutions for modern projects.",
+    "ogImage": "assets/images/catalog-cover.png",
+    "canonicalUrl": "https://mathieu1-tech.github.io/mathieu/"
+  },
+  "faq": [
+    {
+      "question": "Can the units be customized?",
+      "answer": "Yes. Layout, color, panels, and optional components can be matched to the intended use and project requirements."
+    },
+    {
+      "question": "What are common applications?",
+      "answer": "Site offices, temporary housing, vacation units, resorts, commercial kiosks, glamping, and other modular spaces."
+    },
+    {
+      "question": "How do I get pricing?",
+      "answer": "Submit the quotation form with product type, quantity, and project location so the team can prepare a more accurate estimate."
+    },
+    {
+      "question": "Can I download the catalog?",
+      "answer": "Yes. Use the Download Catalog button to save the product catalog PDF for review or sharing."
+    },
+    {
+      "question": "Do product images show the full unit?",
+      "answer": "Yes. Product imagery is kept fully visible using contained framing so buyers can inspect the unit shape and details."
+    }
+  ],
+  "catalog": {
+    "url": "assets/catalog/PREFAB-CATALOG-MKS-CO-LTD-2026_compressed.pdf",
+    "coverImage": "assets/images/catalog-cover.png",
+    "title": "Download Our Product Catalog",
+    "description": "Explore Mathieu Konstruct Solutions prefab units, materials, specifications, layout options, applications, and contact details in one complete catalog."
+  },
+  "analytics": {
+    "provider": "none",
+    "googleMeasurementId": "",
+    "plausibleDomain": "",
+    "debug": false
+  },
+  "forms": {
+    "provider": "mailto",
+    "quoteEndpoint": "",
+    "contactEndpoint": "",
+    "method": "POST",
+    "honeypotName": "company_website",
+    "minimumSubmitSeconds": 3,
+    "fallbackEmail": "mathieukonstructsolutions@gmail.com"
+  },
+  "trust": {
+    "processTitle": "Simple prefab project process",
+    "processSteps": [
+      "Share your intended use, location, quantity, and preferred unit type.",
+      "Review recommended product, size, layout, wall panel, and color options.",
+      "Confirm quotation scope, production details, delivery, and installation expectations.",
+      "Deploy the prefab unit with reduced on-site work and clearer project timing."
+    ],
+    "durabilityTitle": "Built for practical project use",
+    "durabilityPoints": [
+      "Steel frame and insulated wall panel system",
+      "Weather-ready finishes and low-maintenance surfaces",
+      "Flexible use for offices, housing, commercial spaces, resorts, and temporary facilities"
+    ],
+    "comparisonTitle": "Choose the right prefab unit",
+    "recommendations": [
+      {
+        "need": "Construction site operations",
+        "product": "Engineering Container House",
+        "reason": "Durable frame, fast deployment, and scalable layout options."
+      },
+      {
+        "need": "Custom business or specialty space",
+        "product": "Customized Container House",
+        "reason": "Flexible planning, color options, panels, and finishes."
+      },
+      {
+        "need": "Urgent housing or temporary facility",
+        "product": "1-Day Quick Build Houses",
+        "reason": "Designed around faster assembly and reduced site disruption."
+      },
+      {
+        "need": "Resort, Airbnb, or guest stay",
+        "product": "A-Frame House",
+        "reason": "Distinctive look, strong guest appeal, and vacation-ready profile."
+      },
+      {
+        "need": "Premium attraction or compact suite",
+        "product": "Space Capsule House",
+        "reason": "Modern capsule styling with multifunctional living, work, or leisure use."
+      }
+    ]
   }
 };
+
 window.storageKeys = { data: 'mksSiteData', savedAt: 'mksSiteDataSavedAt' };
-window.cloneSiteData = function cloneSiteData(data) {
-  return JSON.parse(JSON.stringify(data));
-};
-window.getSiteData = function getSiteData() {
-  try {
-    const raw = localStorage.getItem(window.storageKeys.data);
-    if (!raw) return window.cloneSiteData(window.defaultSiteData);
-    const parsed = JSON.parse(raw);
-    return Object.assign(window.cloneSiteData(window.defaultSiteData), parsed);
-  } catch (err) {
-    console.error('Failed to load site data', err);
-    return window.cloneSiteData(window.defaultSiteData);
-  }
-};
-window.saveSiteData = function saveSiteData(data) {
-  const clean = window.cloneSiteData(data);
-  localStorage.setItem(window.storageKeys.data, JSON.stringify(clean));
-  localStorage.setItem(window.storageKeys.savedAt, new Date().toISOString());
-};
-window.getSiteSavedAt = function getSiteSavedAt() {
-  return localStorage.getItem(window.storageKeys.savedAt) || '';
-};
+window.cloneSiteData = function cloneSiteData(data) { return JSON.parse(JSON.stringify(data)); };
+function mergeSiteData(defaults, saved) { if (!saved || typeof saved !== 'object') return window.cloneSiteData(defaults); const base = window.cloneSiteData(defaults); Object.keys(saved).forEach(function(key) { if (Array.isArray(saved[key])) base[key] = saved[key]; else if (saved[key] && typeof saved[key] === 'object' && base[key] && !Array.isArray(base[key])) base[key] = Object.assign({}, base[key], saved[key]); else base[key] = saved[key]; }); return base; }
+window.getSiteData = function getSiteData() { try { const raw = localStorage.getItem(window.storageKeys.data); if (!raw) return window.cloneSiteData(window.defaultSiteData); return mergeSiteData(window.defaultSiteData, JSON.parse(raw)); } catch (err) { console.error('Failed to load site data', err); return window.cloneSiteData(window.defaultSiteData); } };
+window.saveSiteData = function saveSiteData(data) { const clean = window.cloneSiteData(data); localStorage.setItem(window.storageKeys.data, JSON.stringify(clean)); localStorage.setItem(window.storageKeys.savedAt, new Date().toISOString()); };
+window.getSiteSavedAt = function getSiteSavedAt() { return localStorage.getItem(window.storageKeys.savedAt) || ''; };

@@ -17,7 +17,7 @@ const {
   requireAdmin,
   csrfProtection
 } = require('./auth');
-const { sanitizeSiteData, parseDefaultSiteData, toSiteDataJs, makeCsrfToken } = require('./utils');
+const { sanitizeSiteData, parseDefaultSiteData, toSiteDataJs, makeCsrfToken, normalizeSiteData } = require('./utils');
 
 const app = express();
 const PORT = Number(process.env.PORT || 3000);
@@ -56,9 +56,9 @@ async function ensureSeeded() {
     const username = process.env.ADMIN_USERNAME || 'admin';
     const password = process.env.ADMIN_PASSWORD;
     if (!password || password === 'change-this-password-before-deploying') {
-      console.warn('WARNING: Set ADMIN_PASSWORD in .env before deploying. Using temporary local password: admin12345');
+      throw new Error('ADMIN_PASSWORD must be set in the backend environment before starting the admin server.');
     }
-    const passwordHash = await hashPassword(password && password !== 'change-this-password-before-deploying' ? password : 'admin12345');
+    const passwordHash = await hashPassword(password);
     db.prepare('INSERT INTO admin_users (username, password_hash) VALUES (?, ?)').run(username, passwordHash);
     console.log(`Seeded admin user: ${username}`);
   }
@@ -137,12 +137,12 @@ app.post('/api/auth/change-password', requireAdmin, csrfProtection, async (req, 
 
 app.get('/api/public/site-data', (req, res) => {
   const row = db.prepare('SELECT data_json, updated_at FROM site_data WHERE id = 1').get();
-  res.json({ data: JSON.parse(row.data_json), updatedAt: row.updated_at });
+  res.json({ data: normalizeSiteData(JSON.parse(row.data_json)), updatedAt: row.updated_at });
 });
 
 app.get('/api/site-data', requireAdmin, (req, res) => {
   const row = db.prepare('SELECT data_json, updated_at FROM site_data WHERE id = 1').get();
-  res.json({ data: JSON.parse(row.data_json), updatedAt: row.updated_at });
+  res.json({ data: normalizeSiteData(JSON.parse(row.data_json)), updatedAt: row.updated_at });
 });
 
 app.put('/api/site-data', requireAdmin, csrfProtection, (req, res) => {
@@ -164,11 +164,12 @@ app.get('/api/site-data.js', (req, res) => {
 
 function getSiteDataObject() {
   const row = db.prepare('SELECT data_json FROM site_data WHERE id = 1').get();
-  return JSON.parse(row.data_json);
+  return normalizeSiteData(JSON.parse(row.data_json));
 }
 function saveSiteDataObject(data, adminId) {
+  const clean = sanitizeSiteData(data);
   db.prepare("UPDATE site_data SET data_json = ?, updated_at = datetime('now'), updated_by = ? WHERE id = 1")
-    .run(JSON.stringify(data), adminId);
+    .run(JSON.stringify(clean), adminId);
 }
 
 app.get('/api/products', requireAdmin, (req, res) => {
@@ -178,18 +179,18 @@ app.get('/api/products', requireAdmin, (req, res) => {
 app.post('/api/products', requireAdmin, csrfProtection, (req, res) => {
   const data = getSiteDataObject();
   data.products = Array.isArray(data.products) ? data.products : [];
-  const product = { id: `product-${Date.now()}`, ...req.body };
+  const product = normalizeSiteData({ products: [{ id: req.body.id || `product-${Date.now()}`, ...req.body }] }).products[0];
   data.products.push(product);
   saveSiteDataObject(data, req.admin.id);
-  audit(req.admin.id, 'create_product', { id: product.id, name: product.name }, req);
+  audit(req.admin.id, 'create_product', { id: product.id, title: product.title }, req);
   res.status(201).json({ ok: true, product });
 });
 app.put('/api/products/:id', requireAdmin, csrfProtection, (req, res) => {
   const data = getSiteDataObject();
   const products = Array.isArray(data.products) ? data.products : [];
-  const index = products.findIndex(p => String(p.id || p.name) === req.params.id);
+  const index = products.findIndex(p => String(p.id) === req.params.id);
   if (index === -1) return res.status(404).json({ error: 'Product not found.' });
-  products[index] = { ...products[index], ...req.body };
+  products[index] = normalizeSiteData({ products: [{ ...products[index], ...req.body, id: products[index].id }] }).products[0];
   data.products = products;
   saveSiteDataObject(data, req.admin.id);
   audit(req.admin.id, 'update_product', { id: req.params.id }, req);
@@ -198,7 +199,7 @@ app.put('/api/products/:id', requireAdmin, csrfProtection, (req, res) => {
 app.delete('/api/products/:id', requireAdmin, csrfProtection, (req, res) => {
   const data = getSiteDataObject();
   const before = Array.isArray(data.products) ? data.products : [];
-  data.products = before.filter(p => String(p.id || p.name) !== req.params.id);
+  data.products = before.filter(p => String(p.id) !== req.params.id);
   if (data.products.length === before.length) return res.status(404).json({ error: 'Product not found.' });
   saveSiteDataObject(data, req.admin.id);
   audit(req.admin.id, 'delete_product', { id: req.params.id }, req);
